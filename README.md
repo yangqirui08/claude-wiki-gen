@@ -8,6 +8,10 @@
 
 **不是**一个可执行程序——是一份给 Claude Code 看的"做 wiki 的 SOP"。Claude 读它就知道该怎么做。
 
+## 来源与致谢(Attribution)
+
+本项目是一个**衍生作品**:方法论与 prompt 架构**改编自 [Microsoft deep-wiki 插件](https://github.com/microsoft/skills/tree/main/.github/plugins/deep-wiki)(MIT License, © Microsoft Corporation)**;微软该插件又蒸馏自 [OpenDeepWiki](https://github.com/AIDotNet/OpenDeepWiki) 与 [deepwiki-open](https://github.com/AsyncFuncAI/deepwiki-open)。本项目在其上做了中文化、Zread schema 对齐、Claude Code 工程适配等改编。完整来源、许可与改编范围见 [`THIRD-PARTY-NOTICES.md`](THIRD-PARTY-NOTICES.md)。
+
 ## 怎么用
 
 ```
@@ -51,6 +55,8 @@
 ```
 源码分析工具/
 ├── README.md                       ← 你正在读
+├── LICENSE                         ← 本项目 MIT(© 2026 Qirui,仅覆盖原创部分)
+├── THIRD-PARTY-NOTICES.md          ← 第三方来源与许可(微软 deep-wiki = MIT 等)
 ├── methodology.md                  ← 核心 SOP(Claude 必读)
 ├── prompts/
 │   ├── 01-toc-generation.md       ← 目录生成 prompt
@@ -71,6 +77,8 @@
 ```
 
 ## 设计理念（基于 Microsoft deep-wiki 10 原则改编）
+
+> 以下 10 条原则改编自 Microsoft deep-wiki(MIT,© Microsoft Corporation);来源与许可见 [`THIRD-PARTY-NOTICES.md`](THIRD-PARTY-NOTICES.md)。
 
 1. **源码追溯**：每个非微小断言带行号引用，文件名 + 行号必须可点
 2. **结构优先**：先生成 TOC，再写章节内容
@@ -121,3 +129,9 @@
 - **本质是 prompt 工程**，模型升级 / 上游 deep-wiki 更新时跟着调
 - 如果某次产出质量不行，先改 `prompts/`，不要改 trigger-prompts（trigger 是稳定接口）
 - 学到的新教训写进 `methodology.md` 的"Lessons Learned"区
+
+## 许可(License)
+
+- 本项目原创部分:**MIT License**,© 2026 Qirui,见 [`LICENSE`](LICENSE)。
+- 本项目改编自 Microsoft deep-wiki(MIT,© Microsoft Corporation)等第三方;依 MIT 要求保留其版权与许可声明于 [`THIRD-PARTY-NOTICES.md`](THIRD-PARTY-NOTICES.md)。
+- 分发、再改编本项目时,请连同 `LICENSE` 与 `THIRD-PARTY-NOTICES.md` 一并保留。

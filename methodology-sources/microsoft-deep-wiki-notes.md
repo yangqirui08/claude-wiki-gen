@@ -3,6 +3,7 @@
 > 来源: https://github.com/microsoft/skills/tree/main/.github/plugins/deep-wiki
 > 阅读时间: 2026-05-15
 > 关键文件: README.md + skills/wiki-architect/SKILL.md + skills/wiki-page-writer/SKILL.md
+> 许可(2026-05-18 核实): `microsoft/skills` LICENSE = **MIT**, Copyright (c) Microsoft Corporation;插件 README 自述 MIT 且 "Distilled from OpenDeepWiki + deepwiki-open"。本项目作为衍生作品的合规署名见仓库根 `THIRD-PARTY-NOTICES.md`(MIT 允许改编+以 MIT 再发布,须保留微软版权与许可声明)。
 
 ## 为啥选这个作蓝本
 
