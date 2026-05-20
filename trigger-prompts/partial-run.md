@@ -16,7 +16,7 @@
 
 ## 必填变量(我会告诉你)
 
-- `TARGET_CHAPTERS`: 要生成的章节 slug 列表,例:`["10-zhong-jian-jian-lian-ji-zhi", "14-sha-xiang-jia-gou-yu-shi-xian", "19-chang-qi-ji-yi-ji-zhi"]`
+- `TARGET_CHAPTERS`: 要生成的章节 slug 列表(**中文标题原样,不转拼音**),例:`["10-中间件链机制", "14-沙箱架构与实现", "19-长期记忆机制"]`
 - `WIKI_DIR`: 已有 wiki 目录路径,例:`./.claude-wiki/versions/2026-05-15-153000/`
 - `REPO_URL`: 源仓库 URL
 - `BRANCH`: 源仓库分支

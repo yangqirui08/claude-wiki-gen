@@ -63,7 +63,7 @@
   "id": "2026-05-15-153000",
   "generated_at": "2026-05-15T15:30:00Z",
   "language": "zh",
-  "generator": "claude-wiki-gen-v0.1",
+  "generator": "claude-wiki-gen-v0.2",
   "model": "claude-opus-4-7",
   "source_repo": "https://github.com/bytedance/deer-flow",
   "source_branch": "main",

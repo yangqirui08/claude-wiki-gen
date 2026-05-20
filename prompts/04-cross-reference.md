@@ -52,20 +52,67 @@ Grep 整个 .claude-wiki/versions/<timestamp>/ 找:
 
 为每章追加/重写 Related Pages 段(如果原有的不全)。
 
+### 第 6 步:独立 subagent 终审(强烈建议)
+
+主 agent 自己 grep 容易漏自己写过的章节(盲点)。**派 1 个 subagent 用 fresh ctx 做独立终审**,产出一份"问题清单",主 agent 拿来修。
+
+为什么用 subagent:本步骤的工作性质天然适合"没有写作上下文"的视角——校验员不该是作者本人。
+
+派单模板(主 agent 拷贝调整后发 Agent 工具,设 `run_in_background: true`):
+
+```
+你是技术文档独立审计员。任务:对 <WIKI_DIR> 下的 wiki 做最终独立校验,产出问题清单。
+
+请按以下顺序检查并返回 4 段报告:
+
+## 1. 坏链
+对 WIKI_DIR/*.md 文件 grep 所有 ./N-xxx.md 形式的链接,验证目标文件实际存在。
+列出每个坏链: "<src>.md 第 X 行 → <broken-target>.md (不存在)"
+
+## 2. 孤岛/半孤岛
+统计每章入度(被多少其他章节链接)。
+- 入度 = 0 → 孤岛(必须补)
+- 入度 = 1 → 半孤岛(建议补)
+列出每个: "<slug>.md 入度=X"
+
+## 3. 行号引用抽查(从 5+ 不同章节随机抽 8 处)
+对每处 [path:line](url) 引用:
+- Read 实际源码该行
+- 跟章节里描述的内容是否对得上
+- 标记 ✅ 准确 / ⚠️ 行号偏 ±3 / ❌ 完全不符
+
+## 4. 术语一致性
+对 wiki.json 里的核心术语,grep 出在不同章节的翻译是否一致(例: middleware 在某章叫"中间件"另一章叫"拦截器" → 报)。
+
+## 输出
+返回 4 段报告,每段列具体位置(文件:行号)。不修文件,只产报告。
+
+WIKI_DIR: <填具体路径>
+REPO_URL: <填 wiki.json 里的 source_repo>
+```
+
+主 agent 拿到报告后:
+- 坏链 → 直接 Edit 改
+- 孤岛 → 给相关章节补反向引用
+- 引用 ❌ → 改行号或重写描述
+- 术语不一致 → 统一翻译
+
 ## 链接格式规范
 
 ### 同目录(都在 .claude-wiki/versions/<X>/ 里)
 ```markdown
-[中间件链机制](./10-zhong-jian-jian-lian-ji-zhi.md)
+[中间件链机制](./10-中间件链机制.md)
 ```
+
+> ⚠️ slug 用中文标题原样(v0.2 起规则,见 [01-toc-generation §章节命名](01-toc-generation.md))。**不要转拼音、不要转英文**。
 
 ### 锚到具体小节
 ```markdown
-[中间件链机制 §before/after hook](./10-zhong-jian-jian-lian-ji-zhi.md#beforeafter-hook)
+[中间件链机制 §before/after hook](./10-中间件链机制.md#beforeafter-hook)
 ```
 
 ### 不要写空标题
-❌ `[10-zhong-jian-jian-lian-ji-zhi.md](./10-...)`
+❌ `[10-中间件链机制.md](./10-...)`
 ✅ `[中间件链机制](./10-...)`
 
 ## 反模式

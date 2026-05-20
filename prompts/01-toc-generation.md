@@ -70,7 +70,7 @@ Read 每个 package 的 __init__.py / index.ts 拿到该模块的导出
   "id": "<YYYY-MM-DD-HHMMSS>",
   "generated_at": "<ISO 8601 timestamp>",
   "language": "zh",
-  "generator": "claude-wiki-gen-v0.1",
+  "generator": "claude-wiki-gen-v0.2",
   "model": "claude-opus-4-7",
   "source_repo": "<REPO_URL>",
   "source_branch": "<BRANCH>",
